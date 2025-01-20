@@ -21,7 +21,13 @@ const gameSlice = createSlice({
     reducers: {
         checkWinner: (state, action: PayloadAction<CheckWinnerActionPayload>) => {
             const {field} = action.payload;
-            let winnerDirection = getWinDirection(field, Signs.CROSS) || getWinDirection(field, Signs.CIRCLE)
+            let winnerDirection = Directions.NOTHING;
+            if (getWinDirection(field, Signs.CROSS)) {
+                winnerDirection = getWinDirection(field, Signs.CROSS)
+            }
+            if (getWinDirection(field, Signs.CIRCLE)) {
+                winnerDirection = getWinDirection(field, Signs.CIRCLE)
+            }
             if (winnerDirection && winnerDirection !== Directions.NOTHING) {
                 state.winnerDirection = winnerDirection;
                 return;
