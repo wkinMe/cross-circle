@@ -1,15 +1,23 @@
 import './App.css';
-import { useAppSelector } from './store/store';
-import { selectField, selectSign } from './store/fieldSlice';
+import { useAppDispatch, useAppSelector } from './store/store';
+import { selectField } from './store/fieldSlice';
+import { checkWinner, selectSign } from './store/gameSlice';
 import Field from './features/Field/Field';
 import { Signs } from './features/Game/Signs';
 import Cross from './features/Signs/Cross';
 import Circle from './features/Signs/Circle';
+import { useEffect } from 'react';
 
 
 function App() {
+  const dispatch = useAppDispatch();
   const field = useAppSelector(selectField);
   const sign = useAppSelector(selectSign);
+
+  useEffect(() => {
+    console.log("wha")
+    dispatch(checkWinner({field}))
+  }, [field])
 
   return (
     <>

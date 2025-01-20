@@ -1,10 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { useDispatch, useSelector } from "react-redux";
 import fieldReducer from "./fieldSlice";
+import gameReducer from "./gameSlice"
 
 export const store = configureStore({
     reducer: {
-        field: fieldReducer
+        field: fieldReducer,
+        game: gameReducer,
     },
 })
 

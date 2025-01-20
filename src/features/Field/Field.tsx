@@ -1,9 +1,10 @@
 import { useAppDispatch, useAppSelector } from "../../store/store";
-import { move, selectWinner } from "../../store/fieldSlice";
+import { move } from "../../store/fieldSlice";
 
 import FieldCell from "../FieldCell/FieldCell";
 import { Signs } from "../Game/Signs";
 import { Directions } from "../Game/Directions";
+import { checkWinner, selectSign } from "../../store/gameSlice";
 
 interface FieldProps {
     field: Signs[][]
@@ -11,33 +12,34 @@ interface FieldProps {
 
 export default function Field({ field }: FieldProps) {
     const dispatch = useAppDispatch();
-    const winDirection = useAppSelector(state => state.field.winnerDirection);
+    const winDirection = useAppSelector(state => state.game.winnerDirection);
+    const sign = useAppSelector(selectSign);
 
-    let winLineStyle = "absolute bg-black rounded-md h-2 w-[90%] left-[50%] translate-x-[-50%]";
+    let winLineStyle = "absolute bg-black rounded-md h-2";
     switch (winDirection) {
         case Directions.UP_HORIZONT:
-            winLineStyle += " top-[17%] inline"
+            winLineStyle += " left-[50%] top-[17%] inline translate-x-[-50%] w-[90%]"
             break;
         case Directions.CENTER_HORIZONT:
-            winLineStyle += " top-[49%] inline"
+            winLineStyle += " left-[50%] top-[49%] inline translate-x-[-50%] w-[90%]"
             break;
         case Directions.DOWN_HORIZONT:
-            winLineStyle += " top-[81%] inline"
+            winLineStyle += " left-[50%] top-[81%] inline translate-x-[-50%] w-[90%]"
             break;
         case Directions.LEFT_VERTICAL:
-            winLineStyle += " left-[16%] inline rotate-90 w-[88%]"
+            winLineStyle += " left-[-28%] inline rotate-90 w-[88%]"
             break;
         case Directions.CENTER_VERTICAL:
-            winLineStyle += " left-[50%] inline rotate-90 w-[88%]"
+            winLineStyle += " left-[6%] inline rotate-90 w-[88%]"
             break;
         case Directions.RIGHT_VERTICAL:
-            winLineStyle += " left-[84%] inline rotate-90 w-[88%]"
+            winLineStyle += " left-[40%] inline rotate-90 w-[88%]"
             break;
         case Directions.MAIN_DIAG:
-            winLineStyle += " top-[49%] inline rotate-45 w-[120%]"
+            winLineStyle += " left-[-10%] top-[49%] inline rotate-45 w-[120%]"
             break;
         case Directions.SEC_DIAG:
-            winLineStyle += " left-[52%] inline -rotate-45 w-[120%]"
+            winLineStyle += " left-[-10%] inline -rotate-45 w-[120%]"
             break;
     }
 
@@ -45,7 +47,8 @@ export default function Field({ field }: FieldProps) {
         if (winDirection !== Directions.NOTHING) {
             return;
         }
-        dispatch(move({ x: ind, y: jnd }));
+
+        dispatch(move({ x: ind, y: jnd, sign }));
     }
 
     return (
