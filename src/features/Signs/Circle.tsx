@@ -11,6 +11,7 @@ export default function Circle({size}: CircleProps) {
         case "large":
             sizeParam = 36
             break;
+            
     }
 
     return (
