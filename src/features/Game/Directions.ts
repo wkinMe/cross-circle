@@ -1,0 +1,11 @@
+export enum Directions {
+    MAIN_DIAG = 1,
+    SEC_DIAG,
+    UP_HORIZONT,
+    CENTER_HORIZONT,
+    DOWN_HORIZONT,
+    LEFT_VERTICAL,
+    CENTER_VERTICAL,
+    RIGHT_VERTICAL,
+    NOTHING
+}
