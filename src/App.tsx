@@ -18,15 +18,16 @@ function App() {
   const winDirection = useAppSelector(selectWinDirection)
   const [modalActive, setModalActive] = useState(false);
 
+  const [prevWinDirection, setPrevWinDirection] = useState(winDirection);
+  if (prevWinDirection != winDirection) {
+    setModalActive(true);
+    setPrevWinDirection(winDirection)
+  }
+
+
   useEffect(() => {
     dispatch(checkWinner({field}))
   }, [field])
-
-  useEffect(() => {
-    if (winDirection != Directions.NOTHING) {
-      setModalActive(true)
-    }
-  }, [winDirection])
 
   return (
     <>
