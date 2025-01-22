@@ -28,7 +28,6 @@ function App() {
   useEffect(() => {
     dispatch(checkWinner({field}))
   })
-  console.log("App render")
 
   return (
     <>

@@ -22,15 +22,15 @@ const gameSlice = createSlice({
         checkWinner: (state, action: PayloadAction<CheckWinnerActionPayload>) => {
             const {field} = action.payload;
             let winnerDirection = Directions.NOTHING;
-            if (getWinDirection(field, Signs.CROSS)) {
+
+            if (getWinDirection(field, Signs.CROSS) != Directions.NOTHING) {
                 winnerDirection = getWinDirection(field, Signs.CROSS)
-            }
-            if (getWinDirection(field, Signs.CIRCLE)) {
+            } else if (getWinDirection(field, Signs.CIRCLE) != Directions.NOTHING) {
                 winnerDirection = getWinDirection(field, Signs.CIRCLE)
             }
+
             if (winnerDirection && winnerDirection !== Directions.NOTHING) {
                 state.winnerDirection = winnerDirection;
-                return;
             }
         },
         changeSign: (state) => {

@@ -1,15 +1,16 @@
 import { Directions } from "./Directions";
 import { Signs } from "./Signs";
 
-export function getWinDirection(field: Signs[][], sign: string): Directions {
+export function getWinDirection(field: Signs[][], sign: Signs): Directions {
     let signCount = 0;
-
     for (let i = 0; i < field.length; i++) {
         if (field[i][i] == sign) signCount++;
         if (signCount == 3) {
             return Directions.MAIN_DIAG;
         }
     }
+    
+    console.log(field, sign, signCount)
 
     signCount = 0;
 
@@ -62,6 +63,5 @@ export function getWinDirection(field: Signs[][], sign: string): Directions {
             }
         }
     }
-
     return Directions.NOTHING;
 }
