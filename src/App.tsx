@@ -16,18 +16,19 @@ function App() {
   const field = useAppSelector(selectField);
   const sign = useAppSelector(selectSign);
   const winDirection = useAppSelector(selectWinDirection)
-  const [modalActive, setModalActive] = useState(false);
+  const [modalActive, setModalActive] = useState(false)
 
   const [prevWinDirection, setPrevWinDirection] = useState(winDirection);
+
   if (prevWinDirection != winDirection) {
     setModalActive(true);
-    setPrevWinDirection(winDirection)
+    setPrevWinDirection(winDirection);
   }
-
 
   useEffect(() => {
     dispatch(checkWinner({field}))
-  }, [field])
+  })
+  console.log("App render")
 
   return (
     <>

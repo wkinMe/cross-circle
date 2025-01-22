@@ -32,7 +32,8 @@ const gameSlice = createSlice({
                 state.winnerDirection = winnerDirection;
                 return;
             }
-            
+        },
+        changeSign: (state) => {
             state.sign = state.sign === Signs.CIRCLE ? Signs.CROSS : Signs.CIRCLE;
         }
 
@@ -41,5 +42,5 @@ const gameSlice = createSlice({
 })
 
 export default gameSlice.reducer;
-export const {checkWinner} = gameSlice.actions;
+export const {checkWinner, changeSign} = gameSlice.actions;
 export const {selectSign, selectWinDirection} = gameSlice.selectors;

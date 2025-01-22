@@ -4,7 +4,8 @@ import { move } from "../../store/fieldSlice";
 import FieldCell from "../FieldCell/FieldCell";
 import { Signs } from "../Game/Signs";
 import { Directions } from "../Game/Directions";
-import { checkWinner, selectSign } from "../../store/gameSlice";
+import { changeSign, checkWinner, selectSign } from "../../store/gameSlice";
+import { useEffect } from "react";
 
 interface FieldProps {
     field: Signs[][]
@@ -47,8 +48,8 @@ export default function Field({ field }: FieldProps) {
         if (winDirection !== Directions.NOTHING) {
             return;
         }
-
         dispatch(move({ x: ind, y: jnd, sign }));
+        dispatch((changeSign()));
     }
 
     return (
