@@ -31,13 +31,13 @@ function App() {
   return (
     <>
       <Modal isActive={modalActive} onClick={() => setModalActive(false)}>
-        {sign === Signs.CROSS && <Cross size="large" />}
-        {sign === Signs.CIRCLE && <Circle size="large" />}
+        {sign === Signs.CROSS && <Cross/>}
+        {sign === Signs.CIRCLE && <Circle/>}
         <h1 className="text-4xl">Winner</h1>
       </Modal>
       <div className='grid justify-items-center'>
-        {sign === Signs.CROSS && <Cross size="small" />}
-        {sign === Signs.CIRCLE && <Circle size="small" />}
+        {sign === Signs.CROSS && <Cross/>}
+        {sign === Signs.CIRCLE && <Circle/>}
       </div>
       <Field field={field} />
     </>

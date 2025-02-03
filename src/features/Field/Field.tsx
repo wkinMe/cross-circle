@@ -1,5 +1,5 @@
 import { useAppDispatch, useAppSelector } from "../../store/store";
-import { move, selectField } from "../../store/fieldSlice";
+import { move } from "../../store/fieldSlice";
 
 import FieldCell from "../FieldCell/FieldCell";
 import { Signs } from "../Game/Signs";
