@@ -9,8 +9,6 @@ export function getWinDirection(field: Signs[][], sign: Signs): Directions {
             return Directions.MAIN_DIAG;
         }
     }
-    
-    console.log(field, sign, signCount)
 
     signCount = 0;
 

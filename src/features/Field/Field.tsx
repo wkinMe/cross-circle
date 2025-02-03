@@ -1,11 +1,11 @@
 import { useAppDispatch, useAppSelector } from "../../store/store";
-import { move } from "../../store/fieldSlice";
+import { move, selectField } from "../../store/fieldSlice";
 
 import FieldCell from "../FieldCell/FieldCell";
 import { Signs } from "../Game/Signs";
 import { Directions } from "../Game/Directions";
-import { changeSign, checkWinner, selectSign } from "../../store/gameSlice";
-import { useEffect } from "react";
+import { changeSign, selectSign } from "../../store/gameSlice";
+import { getWinDirection } from "../Game/getWinDirection";
 
 interface FieldProps {
     field: Signs[][]
@@ -43,12 +43,21 @@ export default function Field({ field }: FieldProps) {
             winLineStyle += " left-[-10%] inline -rotate-45 w-[120%]"
             break;
     }
-
+    
     const handleClick = (ind: number, jnd: number) => {
         if (winDirection !== Directions.NOTHING) {
             return;
         }
         dispatch(move({ x: ind, y: jnd, sign }));
+
+        const fieldCopy = field.map(function(arr) {
+            return arr.slice();
+        });
+        fieldCopy[ind][jnd] = sign;
+        
+        if (getWinDirection(fieldCopy, Signs.CIRCLE) !== Directions.NOTHING || getWinDirection(fieldCopy, Signs.CROSS) !== Directions.NOTHING) {
+            return;
+        }
         dispatch((changeSign()));
     }
 

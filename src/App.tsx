@@ -8,7 +8,6 @@ import Cross from './features/Signs/Cross';
 import Circle from './features/Signs/Circle';
 import { useEffect, useState } from 'react';
 import Modal from './features/Modal/Modal';
-import { Directions } from './features/Game/Directions';
 
 
 function App() {
@@ -26,15 +25,19 @@ function App() {
   }
 
   useEffect(() => {
-    dispatch(checkWinner({field}))
+    dispatch(checkWinner({ field }))
   })
 
   return (
     <>
-      {<Modal isActive={modalActive} onClick={() => setModalActive(false)}/>}
+      <Modal isActive={modalActive} onClick={() => setModalActive(false)}>
+        {sign === Signs.CROSS && <Cross size="large" />}
+        {sign === Signs.CIRCLE && <Circle size="large" />}
+        <h1 className="text-4xl">Winner</h1>
+      </Modal>
       <div className='grid justify-items-center'>
         {sign === Signs.CROSS && <Cross size="small" />}
-        {sign === Signs.CIRCLE && <Circle size="small"/>}
+        {sign === Signs.CIRCLE && <Circle size="small" />}
       </div>
       <Field field={field} />
     </>

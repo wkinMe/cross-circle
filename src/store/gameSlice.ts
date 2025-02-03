@@ -23,12 +23,15 @@ const gameSlice = createSlice({
             const {field} = action.payload;
             let winnerDirection = Directions.NOTHING;
 
-            if (getWinDirection(field, Signs.CROSS) != Directions.NOTHING) {
-                winnerDirection = getWinDirection(field, Signs.CROSS)
-            } else if (getWinDirection(field, Signs.CIRCLE) != Directions.NOTHING) {
-                winnerDirection = getWinDirection(field, Signs.CIRCLE)
-            }
+            const isCrossWin = getWinDirection(field, Signs.CROSS);
+            const isCircleWin = getWinDirection(field, Signs.CIRCLE);
 
+            if (isCrossWin) {
+                winnerDirection = isCrossWin;
+            } else if (isCircleWin) {
+                winnerDirection = isCircleWin;
+            }
+            
             if (winnerDirection && winnerDirection !== Directions.NOTHING) {
                 state.winnerDirection = winnerDirection;
             }
