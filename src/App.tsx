@@ -14,9 +14,10 @@ function App() {
   const dispatch = useAppDispatch();
   const field = useAppSelector(selectField);
   const sign = useAppSelector(selectSign);
-  const winDirection = useAppSelector(selectWinDirection)
   const [modalActive, setModalActive] = useState(false)
 
+  
+  const winDirection = useAppSelector(selectWinDirection);
   const [prevWinDirection, setPrevWinDirection] = useState(winDirection);
 
   if (prevWinDirection != winDirection) {
