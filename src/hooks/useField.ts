@@ -48,7 +48,7 @@ export const useField = ({field}: {field: Signs[][]}) => {
             return arr.slice();
         });
         fieldCopy[ind][jnd] = sign;
-
+        
         const isCircleWin = getWinDirection(fieldCopy, Signs.CIRCLE);
         const isCrossWin = getWinDirection(fieldCopy, Signs.CROSS);
         

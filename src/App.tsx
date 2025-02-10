@@ -16,11 +16,11 @@ function App() {
   const sign = useAppSelector(selectSign);
   const [modalActive, setModalActive] = useState(false)
 
-  
+
   const winDirection = useAppSelector(selectWinDirection);
   const [prevWinDirection, setPrevWinDirection] = useState(winDirection);
-
-  if (prevWinDirection != winDirection) {
+  
+  if (prevWinDirection !== winDirection) {
     setModalActive(true);
     setPrevWinDirection(winDirection);
   }
